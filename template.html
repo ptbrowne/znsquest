@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<script src="https://d3plus.org/js/d3.js"></script>
+<script src="https://d3plus.org/js/d3plus.js"></script>
+
+<style type="text/css">
+    svg {
+        margin: 1rem;
+    }    
+
+</style>
+
+{{#each svgs as |svg| }}
+  {{{ svg }}}
+{{/each}}
+
+<script>
+{{#each svgs as |svg key| }}
+  // Wrap text in a rectangle.
+
+  d3plus.textwrap()
+    .container(d3.select("#title{{ key }}"))
+    .align('middle')
+    .resize(true)
+    .size([0, 28])
+    .draw();
+
+  d3plus.textwrap()
+    .container(d3.select("#description{{ key }}"))
+    .resize(true)
+    .size([0, 20])
+    .draw();
+{{/each}}
+</script>
