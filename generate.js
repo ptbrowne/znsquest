@@ -53,6 +53,7 @@ const colorByTypes = {
 
 const parseDescriptionLine = line => {
   const [nb, rest] = line.split('.', 2)
+  if (!rest) { return }
   const splitted = rest.split('|')
   const type = trim(splitted[0])
   return {
@@ -67,9 +68,10 @@ const parseDescriptionLine = line => {
 
 
 const readCardData = () => {
-  const infos = fs.readFileSync(path.resolve(__dirname, 'descriptions.txt')).toString()
-  const splitted = infos.split('\n').filter(x => x != '')
-  const lines = splitted.map(parseDescriptionLine).filter(x => x.title && x.description)
+  const infos = fs.readFileSync('/Users/pbrowne/Dropbox/DOCMOMO/Idées.txt').toString().split('\n')
+  const i = infos.findIndex(x => x.includes('--  DEBUT  DES  CARTES  --'))
+  const splitted = infos.slice(i + 1).filter(x => trim(x) != '')
+  const lines = splitted.map(parseDescriptionLine).filter(x => x && x.title && x.description)
   return lines
 }
 
