@@ -52,17 +52,21 @@ const colorByTypes = {
 
 
 const parseDescriptionLine = line => {
-  const [nb, rest] = line.split('.', 2)
+  const [nb, ...rest] = line.split('.')
   if (!rest) { return }
-  const splitted = rest.split('|')
+  const splitted = rest.join('.').split('|')
   const type = trim(splitted[0])
+  const description = trim(splitted[2])
+  if (line.toLowerCase().includes('tgif')) {
+    console.log(description, nb, rest)
+  }
   return {
     number: nb,
     backgroundColor: bgByTypes[type.toLowerCase()],
     fontColor: colorByTypes[type.toLowerCase()],
     type: type,
     title: titlecase(deburr(trim(splitted[1]))),
-    description: trim(splitted[2])
+    description
   }
 }
 
