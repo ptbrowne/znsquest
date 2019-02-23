@@ -7,7 +7,11 @@
 <style type="text/css">
     svg {
         margin: 1rem;
-    }    
+    }
+
+    body {
+      margin
+    }
 
 </style>
 
@@ -24,6 +28,13 @@
     .align('middle')
     .resize(true)
     .size([0, 28])
+    .draw();
+
+  d3plus.textwrap()
+    .container(d3.select("#friend{{ key }}"))
+    .align('middle')
+    .resize(true)
+    .size([0, 50])
     .draw();
 
   d3plus.textwrap()

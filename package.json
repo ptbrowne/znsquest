@@ -6,6 +6,7 @@
   "dependencies": {
     "argparse": "^1.0.10",
     "handlebars": "^4.1.0",
+    "image-size": "^0.7.2",
     "lodash": "^4.17.11"
   }
 }
