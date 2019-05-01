@@ -1,3 +1,19 @@
+// Pour lancer ce fichier, il faut avoir node, node est un programme
+// qui comprend et éxécute du Javascript. Il permet aussi d'installer
+// des librairies via son gestionnaire de paquets qui s'appelle npm.
+// 
+// Installation de node: https://www.webucator.com/how-to/how-install-nodejs-on-mac.cfm
+// 
+// Ensuite il faut installer les librairies nécessaires: dans un terminal,
+// naviguer vers le dossier ou tu as téléchargé le code
+// 
+// $ cd Downloads/znsquest/cards/
+// $ npm install
+// 
+// `npm install` installe les librairies
+// 
+// Ensuite tu peux génér
+
 // Dependendances et librairies
 // Require permet d'importer une librairie
 // 
@@ -24,22 +40,34 @@ const maxBy = require('lodash/maxBy') // donner le maximum selon une fonction
 // Calculer la taille d'une image
 const imageSize = require('image-size')
 
-
+// template.html est le template de la page HTML qui va être générée = la planche
+// destinée à être imprimée.
+// 
+// Après géneration, il faut :
+// - ouvrir la page avec Firefox
+// - Prendre un screenshot haute qualité de la page en
+//   - Ouvrant la console (Cmd + Shift + i)
+//   - Taper ":screenshot --fullpage --dpr 2"
+//   - Entrée
 const TEMPLATE_PATH = './template.html'
-const IMAGES_PATH = '/Users/pbrowne/montages/znsquest/resized-photos'
+const IMAGES_PATH = path.join(__dirname, 'images')
 
-// Idees contient toutes les descriptions des images
-// dans le format
+// Chemin vers le fichiers qui contient toutes les descriptions des cartes
+// au format
 // numero. | type de carte | titre | description
 // Pour chaque personne, tu devras surement rajouter des champs (| tenue à l'alcool | % d'humour | endurance)
-const INFO_PATH = '/Users/pbrowne/Dropbox/DOCMOMO/Idées.txt'
+const INFO_PATH = path.join(__dirname, 'descriptions.txt')
 
+// Permet de mettre une chaîne de caractères au format titre.
 // abc def ghi -> Abc Def Ghi
 const titlecase = str => str.split(' ').map(capitalize).join(' ')
 
-// Handlebars permet de gérer des templates. Des templates sont des fichiers ou
-// vont être remplacées des valeurs. 
-// Ex de template
+// Handlebars permet de gérer des templates. Des templates sont des fichiers où des morceaux
+// vont être remplacées des valeurs.
+// 
+// Les bouts remplacés sont contenus entre des accolades.
+// 
+// Exemple
 // 
 // const template = "Bonjour {{ nom }}"
 // const compiledTemplate = Handlebars.compile(template)
@@ -49,7 +77,7 @@ const titlecase = str => str.split(' ').map(capitalize).join(' ')
 // "Bonjour Paul"
 // 
 // C'est ce qui va permettre de créer des fichiers SVG avec les valeurs pour
-// chaque ligne dans le fichier des description (voir plus haut).
+// chaque ligne dans le fichier des descriptions (voir plus haut).
 const indexTpl = Handlebars.compile(fs.readFileSync(TEMPLATE_PATH).toString())
 
 const nbRx = /^(\d+)\./

@@ -1,3 +1,5 @@
+<!-- Sûrement pas besoin de modifier ce fichier -->
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -23,6 +25,8 @@
 {{#each svgs as |svg key| }}
   // Wrap text in a rectangle.
 
+  // Permet de faire en sorte que les titres des cartes tiennent dans leurs 
+  // places en diminuant la taille de sa police s'il le faut.
   d3plus.textwrap()
     .container(d3.select("#title{{ key }}"))
     .align('middle')
@@ -30,6 +34,7 @@
     .size([0, 28])
     .draw();
 
+  // Pareil pour les titres des amis, mais qui peut être plus gros (50 > 28)
   d3plus.textwrap()
     .container(d3.select("#friend{{ key }}"))
     .align('middle')
@@ -37,6 +42,7 @@
     .size([0, 50])
     .draw();
 
+  // Pareil pour les descriptions
   d3plus.textwrap()
     .container(d3.select("#description{{ key }}"))
     .resize(true)
